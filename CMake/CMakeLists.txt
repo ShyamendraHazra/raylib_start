@@ -1,0 +1,30 @@
+cmake_minimum_required(VERSION 3.20)
+
+set(PROJECT_NAME "RAYLIB_MK1")
+
+
+project(${PROJECT_NAME} LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+get_filename_component(PROJECT_ROOT_PATH "${CMAKE_CURRENT_SOURCE_DIR}" DIRECTORY)
+
+set(CMAKE_BINARY_DIR "${PROJECT_ROOT_PATH}/bin/${CMAKE_SYSTEM_NAME}")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${PROPJECT_NAME}")
+set(SOURCE_DIR "${PROJECT_ROOT_PATH}/Source")
+set(TEST_DIR "${PROJECT_ROOT_PATH}/Tests")
+set(INCLUDE_DIR "${PROJECT_ROOT_PATH}/Include")
+set(TARGET_NAME "${PROJECT_NAME}_${CMAKE_SYSTEM_NAME}")
+file(GLOB_RECURSE SOURCES "${SOURCE_DIR}/*.cc" "${SOURCE_DIR}/*.cpp")
+file(GLOB_RECURSE TEST_SOURCES "${TEST_DIR}/*.cc" "${TEST_DIR}/*.cpp")
+
+message("PROJECT :: ${PROJECT_ROOT_PATH}")
+
+add_subdirectory("${PROJECT_ROOT_PATH}/lib/raylib" "${CMAKE_BINARY_DIR}/raylib")
+
+add_executable("${TARGET_NAME}" ${SOURCES})
+target_include_directories("${TARGET_NAME}" PRIVATE "${INCLUDE_DIR}")
+target_link_libraries("${TARGET_NAME}" raylib)
+
+message("TEST_SOURCES :: ${TEST_SOURCES}")
+add_executable("${TARGET_NAME}_test" ${TEST_SOURCES})
