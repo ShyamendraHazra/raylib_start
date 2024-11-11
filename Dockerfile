@@ -1,7 +1,7 @@
 FROM  archlinux:latest
 
 # Install dependencies
-RUN	 pacman -Syyu --noconfirm sudo openssh bash-completion nano git cmake clang 
+RUN	 pacman -Syyu --noconfirm sudo openssh bash-completion nano git cmake clang make neovim xorg-server xorg-apps xorg-xinit libxi libxcursor libxinerama
 
 # Generate host keys
 RUN  /usr/bin/ssh-keygen -A
