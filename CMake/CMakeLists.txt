@@ -20,7 +20,7 @@ file(GLOB_RECURSE TEST_SOURCES "${TEST_DIR}/*.cc" "${TEST_DIR}/*.cpp")
 
 message("PROJECT :: ${PROJECT_ROOT_PATH}")
 
-add_subdirectory("${PROJECT_ROOT_PATH}/lib/raylib" "${CMAKE_BINARY_DIR}/raylib")
+add_subdirectory("${PROJECT_ROOT_PATH}/raylib" "${CMAKE_BINARY_DIR}/raylib")
 
 add_executable("${TARGET_NAME}" ${SOURCES})
 target_include_directories("${TARGET_NAME}" PRIVATE "${INCLUDE_DIR}")
